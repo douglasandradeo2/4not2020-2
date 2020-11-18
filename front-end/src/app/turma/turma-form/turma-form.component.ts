@@ -25,6 +25,21 @@ export class TurmaFormComponent implements OnInit {
   professores : any = []
   salasAula : any = []
 
+  // Dias da semana
+  diasSemana : any = [
+      { val: 'dom', descr: 'Domingo' },
+      { val: 'seg', descr: 'Segunda-feira' },
+      { val: 'ter', descr: 'Terça-feira' },
+      { val: 'qua', descr: 'Quarta-feira' },
+      { val: 'qui', descr: 'Quinta-feira' },
+      { val: 'sex', descr: 'Sexta-feira' },
+      { val: 'sáb', descr: 'Sábado' }
+  ]
+
+  // Para armazenar os dias da semana
+  dias_semana : any = {}
+
+
   constructor(
     private turmaSrv: TurmaService,
     private snackBar : MatSnackBar,
@@ -71,6 +86,8 @@ export class TurmaFormComponent implements OnInit {
   
 
   async salvar(form: NgForm) {
+    //alert(`data_inicial: ${this.turma.data_inicial}, data_final: ${this.turma.data_final}`)
+    //return
     if(form.valid) {
       try {
           // Se o turma já existir (caso de edição), ele já terá
@@ -80,14 +97,14 @@ export class TurmaFormComponent implements OnInit {
           } 
           else{
           // 1) Salvar os dados no back-end
-          await this.turmaSrv.novo(this.turma)
+            await this.turmaSrv.novo(this.turma)
+          }
           // 2) Dar o feedback para o usuário
           this.snackBar.open('Dados salvos com sucesso.', 'Entendi',
             { duration: 5000 })
           // 3) Voltar ao componente de listagem
-          this.location.back()
-          }
-      }
+          this.location.back()  
+        }
       catch (erro) {
         console.log(erro)
         this.snackBar.open('ERRO: não foi possível salvar os dados.', 'Que pena!',

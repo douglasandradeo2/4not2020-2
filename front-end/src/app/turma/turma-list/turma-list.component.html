@@ -14,37 +14,32 @@
 
   <!-- Nome Column -->
   <ng-container matColumnDef="nome">
-    <th mat-header-cell *matHeaderCellDef>Curso</th> 
+    <th mat-header-cell *matHeaderCellDef>Turma</th> 
     <td mat-cell *matCellDef="let turma"> {{ turma.nome }} </td>
   </ng-container>
 
   <!-- Curso Column -->
   <ng-container matColumnDef="curso">
-    <th mat-header-cell *matHeaderCellDef>Curso</th>
-    <!-- 
-      Quando o atributo é relacionado e está populado, é necessário
-      descer mais um nível para capturar um atributo do subojeto.
+    <th mat-header-cell *matHeaderCellDef>Curso</th> 
+    <!-- Quando o atributo é relacionado e está populado, é necessário
+      descer mais um nível para capturar um atributo do subobjeto.
       O operador ?. evita erros caso o subobjeto não exista -->
-    <td mat-cell *matCellDef="let turma"> {{ turma.curso?.nome }} </td>
+    <td mat-cell *matCellDef="let turma"> {{ turma.curso?.nome }} ({{ turma.curso?.nivel }}) </td>
   </ng-container>
 
-    <!-- Professor Column -->
+  <!-- Professor Column -->
   <ng-container matColumnDef="professor">
-    <th mat-header-cell *matHeaderCellDef>Professor</th>
-    <!-- 
-      Quando o atributo é relacionado e está populado, é necessário
-      descer mais um nível para capturar um atributo do subojeto.
-      O operador ?. evita erros caso o subobjeto não exista -->
+    <th mat-header-cell *matHeaderCellDef>Professor</th> 
     <td mat-cell *matCellDef="let turma"> {{ turma.professor?.nome }} </td>
   </ng-container>
 
-    <!-- Dias semana Column -->
+  <!-- Dias Semana Column -->
   <ng-container matColumnDef="dias_semana">
-    <th mat-header-cell *matHeaderCellDef>Dias semana</th> 
+    <th mat-header-cell *matHeaderCellDef>Dias Semana</th> 
     <td mat-cell *matCellDef="let turma"> {{ turma.dias_semana }} </td>
   </ng-container>
 
-    <!-- Horário Column -->
+  <!-- Horario Column -->
   <ng-container matColumnDef="horario">
     <th mat-header-cell *matHeaderCellDef>Horário</th> 
     <td mat-cell *matCellDef="let turma">
@@ -52,14 +47,19 @@
     </td>
   </ng-container>
 
-    <!-- Sala aula Column -->
+  <!-- Sala Aula Column -->
   <ng-container matColumnDef="sala_aula">
-    <th mat-header-cell *matHeaderCellDef>Sala</th>
-    <!-- 
-      Quando o atributo é relacionado e está populado, é necessário
-      descer mais um nível para capturar um atributo do subojeto.
-      O operador ?. evita erros caso o subobjeto não exista -->
+    <th mat-header-cell *matHeaderCellDef>Sala</th> 
     <td mat-cell *matCellDef="let turma"> {{ turma.sala_aula?.nome }} </td>
+  </ng-container>
+
+  <!-- Período Column -->
+  <ng-container matColumnDef="periodo">
+    <th mat-header-cell *matHeaderCellDef>Período</th> 
+    <td mat-cell *matCellDef="let turma">
+     {{ turma.data_inicial | date:'dd/MM/yyyy' }} &mdash; 
+     {{ turma.data_final | date:'dd/MM/yyyy' }}
+    </td>
   </ng-container>
 
   <!-- Editar Column -->
